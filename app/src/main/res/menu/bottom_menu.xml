@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ico_home"
+        android:orderInCategory="1"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/cardFragment"
+        android:icon="@drawable/ic_profile"
+        android:orderInCategory="2"
+        android:title="Card"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/discountFragment"
+        android:icon="@drawable/ic_profile"
+        android:orderInCategory="3"
+        android:title="Discount"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/locationFragment"
+        android:icon="@drawable/ico_settings"
+        android:orderInCategory="4"
+        android:title="Location"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ico_settings"
+        android:orderInCategory="4"
+        android:title="Settings"
+        app:showAsAction="ifRoom"/>
+
+</menu>
