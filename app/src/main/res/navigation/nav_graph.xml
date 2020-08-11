@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.coffeetime.supplementshop.HomeFragment"
+        android:name="com.coffeetime.supplementshop.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/cardFragment"
-        android:name="com.coffeetime.supplementshop.CardFragment"
+        android:name="com.coffeetime.supplementshop.ui.card.CardFragment"
         android:label="fragment_card"
         tools:layout="@layout/fragment_card" />
     <fragment
         android:id="@+id/discountFragment"
-        android:name="com.coffeetime.supplementshop.DiscountFragment"
+        android:name="com.coffeetime.supplementshop.ui.discount.DiscountFragment"
         android:label="fragment_discount"
         tools:layout="@layout/fragment_discount" />
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.coffeetime.supplementshop.LocationFragment"
+        android:name="com.coffeetime.supplementshop.ui.location.LocationFragment"
         android:label="fragment_location"
         tools:layout="@layout/fragment_location" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.coffeetime.supplementshop.SettingsFragment"
+        android:name="com.coffeetime.supplementshop.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

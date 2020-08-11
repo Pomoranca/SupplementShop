@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.coffeetime.supplementshop"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'androidx.security:security-crypto:1.0.0-alpha02'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -91,8 +92,15 @@ dependencies {
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
 
+    //Apollo
     // The core runtime dependencies
-    implementation "com.apollographql.apollo:apollo-runtime:1.0.0"
+    implementation "com.apollographql.apollo:apollo-runtime:1.2.2"
     // Coroutines extensions for easier asynchronicity handling
     implementation "com.apollographql.apollo:apollo-coroutines-support:1.0.0"
+
+    implementation 'com.apollographql.apollo:apollo-android-support:1.2.2'
+}
+
+apollo {
+    generateKotlinModels.set(true)
 }
