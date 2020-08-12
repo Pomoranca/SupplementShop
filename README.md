@@ -3,6 +3,6 @@
 
 # SupplementShop
 
-Supplement shop is an Android app built using Kotlin.
+Supplement shop is an Android app for shopping supplementation, built using Kotlin.
 
-It shows how to work with graphQL using Apollo Android SDK, following principles of Android Architecture components ViewModel, LiveData and Data Binding
+It shows how to work with graphQL using Apollo Android SDK, following principles of Android Architecture components.
