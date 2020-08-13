@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.apollographql.apollo.coroutines.toDeferred
-import com.coffeetime.supplementshop.FeedResultQuery
+import com.coffeetime.supplementshop.AllUsersQuery
 import com.coffeetime.supplementshop.databinding.FragmentHomeBinding
+import com.coffeetime.supplementshop.network.User
 import com.coffeetime.supplementshop.network.apolloClient
 import kotlinx.coroutines.channels.Channel
 import java.lang.Exception
@@ -18,7 +19,7 @@ import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
-    val viewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
     }
 
@@ -32,26 +33,32 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        val feed = mutableListOf<FeedResultQuery.Result>()
+        val feed = mutableListOf<AllUsersQuery.AllUser>()
         val adapter = ResultListAdapter(feed)
         binding.homeFeed.adapter = adapter
         val channel = Channel<Unit>(Channel.CONFLATED)
 
         channel.offer(Unit)
         adapter.onEndOfListReached = {
-//            channel.offer(Unit)
+            channel.offer(Unit)
         }
+
 
         lifecycleScope.launchWhenResumed {
             for (item in channel) {
                 val response = try {
-                    apolloClient(requireContext()).query(FeedResultQuery()).toDeferred().await()
+
+                    apolloClient(requireContext()).query(AllUsersQuery()).toDeferred().await()
 
                 } catch (e: Exception) {
+                    e.printStackTrace()
+
                     return@launchWhenResumed
                 }
 
-                val newFeed = response.data()!!.characters?.results!!.filterNotNull()
+                val newFeed = response.data()!!.allUsers
+
+                Log.i("RESPONSES", newFeed[0].toString())
 
                 feed.addAll(newFeed)
                 adapter.notifyDataSetChanged()

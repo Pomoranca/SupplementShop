@@ -10,7 +10,7 @@ import okhttp3.Response
 
 private var instance: ApolloClient? = null
 
-const val SERVER_URL = "https://rickandmortyapi.com/graphql"
+const val SERVER_URL = "https://api.graph.cool/simple/v1/ciyz901en4j590185wkmexyex"
 
 
 fun apolloClient(context: Context): ApolloClient {

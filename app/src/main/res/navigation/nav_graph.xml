@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/fragmentLogin">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -30,4 +30,12 @@
         android:name="com.coffeetime.supplementshop.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.coffeetime.supplementshop.ui.login.FragmentLogin"
+        android:label="FragmentLogin" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
