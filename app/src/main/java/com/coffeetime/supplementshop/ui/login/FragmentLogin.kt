@@ -35,8 +35,21 @@ class FragmentLogin : Fragment() {
             }
         })
 
+        viewModel.navigateToRegisterFragment.observe(viewLifecycleOwner, Observer {
+            if(it == true){
+                findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToRegisterFragment())
+                viewModel.onNavigateToRegisterFragmentCompleted()
+            }
+        })
+
         binding.loginButton.setOnClickListener {
-            viewModel.loginUser("aaa", "aaa")
+            val username = binding.userNameEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            viewModel.loginUser(username, password)
+        }
+
+        binding.registerButton.setOnClickListener{
+            viewModel.onNavigateToRegisterFragment()
         }
 
         return binding.root

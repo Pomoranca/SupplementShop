@@ -1,14 +1,10 @@
 package com.coffeetime.supplementshop.ui.login
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.coffeetime.supplementshop.SignInUserMutation
 import com.coffeetime.supplementshop.network.apolloClient
@@ -18,16 +14,16 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-enum class GraphQlStatus { LOADING, ERROR, DONE }
+enum class LoginStatus { LOADING, ERROR, DONE }
 
 class FragmentLoginViewModel(application: Application) : AndroidViewModel(application) {
 
 
     val context = application.applicationContext
 
-    private val _status = MutableLiveData<GraphQlStatus>()
+    private val _status = MutableLiveData<LoginStatus>()
 
-    val status: LiveData<GraphQlStatus>
+    val status: LiveData<LoginStatus>
         get() = _status
 
     private val _navigateToOverviewFragment = MutableLiveData<Boolean>()
@@ -86,6 +82,5 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
         }
 
     }
-
 
 }
