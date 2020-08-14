@@ -1,5 +1,6 @@
 package com.coffeetime.supplementshop.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.coffeetime.supplementshop.R
+import com.coffeetime.supplementshop.MainActivity
 import com.coffeetime.supplementshop.databinding.FragmentLoginBinding
 
 
@@ -28,15 +29,17 @@ class FragmentLogin : Fragment() {
         binding.viewModel
         binding.lifecycleOwner = this
 
-        viewModel.navigateToOverviewFragment.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToHomeActivity.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToHomeFragment())
-                viewModel.onNavigateToOverviewFragmentCompleted()
+                startActivity(
+                    Intent(requireContext(), MainActivity::class.java)
+                )
+                viewModel.onNavigateToHomeActivityCompleted()
             }
         })
 
         viewModel.navigateToRegisterFragment.observe(viewLifecycleOwner, Observer {
-            if(it == true){
+            if (it == true) {
                 findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToRegisterFragment())
                 viewModel.onNavigateToRegisterFragmentCompleted()
             }
@@ -48,7 +51,7 @@ class FragmentLogin : Fragment() {
             viewModel.loginUser(username, password)
         }
 
-        binding.registerButton.setOnClickListener{
+        binding.registerButton.setOnClickListener {
             viewModel.onNavigateToRegisterFragment()
         }
 

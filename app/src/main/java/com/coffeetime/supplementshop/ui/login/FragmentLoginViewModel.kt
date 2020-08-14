@@ -1,7 +1,6 @@
 package com.coffeetime.supplementshop.ui.login
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -28,10 +27,10 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
     val status: LiveData<LoginStatus>
         get() = _status
 
-    private val _navigateToOverviewFragment = MutableLiveData<Boolean>()
+    private val _navigateToHomeActivity = MutableLiveData<Boolean>()
 
-    val navigateToOverviewFragment: LiveData<Boolean>
-        get() = _navigateToOverviewFragment
+    val navigateToHomeActivity: LiveData<Boolean>
+        get() = _navigateToHomeActivity
 
     private val _navigateToRegisterFragment = MutableLiveData<Boolean>()
 
@@ -41,10 +40,6 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
     private val viewModelJob = Job()
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    init {
-        loginIfTokenExists()
-    }
 
 
     fun onNavigateToRegisterFragment() {
@@ -56,12 +51,12 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
 
     }
 
-    fun onNavigateToOverviewFragment() {
-        _navigateToOverviewFragment.value = true
+    fun onNavigateToHomeActivity() {
+        _navigateToHomeActivity.value = true
     }
 
-    fun onNavigateToOverviewFragmentCompleted() {
-        _navigateToOverviewFragment.value = false
+    fun onNavigateToHomeActivityCompleted() {
+        _navigateToHomeActivity.value = false
 
     }
 
@@ -83,17 +78,11 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
             } else {
                 val token = response.data()!!.signinUser.token!!
                 User.setToken(context, token)
-                onNavigateToOverviewFragment()
+                onNavigateToHomeActivity()
             }
         }
     }
 
-    private fun loginIfTokenExists(){
-        if(User.getToken(context) != null) {
-            Log.i("TOKEN", User.getToken(context)!!)
-            _navigateToOverviewFragment.value = true
-        }
 
-    }
 
 }

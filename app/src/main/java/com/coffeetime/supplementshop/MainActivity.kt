@@ -19,11 +19,5 @@ class MainActivity : AppCompatActivity() {
         val navController = host.navController
         NavigationUI.setupWithNavController(bottomNavigation, navController)
 
-        Log.i("DESTINATION", navController.currentDestination!!.label.toString())
-
-        if(navController.currentDestination!!.label!! == "FragmentLogin") {
-            bottomNavigation.visibility = View.GONE
-        } 
-
     }
 }
