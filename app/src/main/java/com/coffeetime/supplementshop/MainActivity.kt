@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        /** Set-up bottom navigation*/
         val host = supportFragmentManager
             .findFragmentById(R.id.homeFragment) as NavHostFragment
         val navController = host.navController

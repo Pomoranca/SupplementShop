@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        activity!!.bottomNavigation.visibility = View.VISIBLE
+        requireActivity().bottomNavigation.visibility = View.VISIBLE
 
 
         val feed = mutableListOf<AllUsersQuery.AllUser>()

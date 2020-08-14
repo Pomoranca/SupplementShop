@@ -15,6 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+/** Enum class to track Login mutation status */
 enum class LoginStatus { LOADING, ERROR, DONE }
 
 class FragmentLoginViewModel(application: Application) : AndroidViewModel(application) {

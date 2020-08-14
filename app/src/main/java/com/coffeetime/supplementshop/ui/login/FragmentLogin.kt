@@ -15,6 +15,7 @@ import com.coffeetime.supplementshop.databinding.FragmentLoginBinding
 
 class FragmentLogin : Fragment() {
 
+    /** Create viewmodel instance first time it get's called*/
     val viewModel by lazy {
         ViewModelProvider(this).get(FragmentLoginViewModel::class.java)
     }
@@ -29,6 +30,7 @@ class FragmentLogin : Fragment() {
         binding.viewModel
         binding.lifecycleOwner = this
 
+        /** When user is logged in, go to Main Activity*/
         viewModel.navigateToHomeActivity.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 startActivity(
@@ -37,20 +39,21 @@ class FragmentLogin : Fragment() {
                 viewModel.onNavigateToHomeActivityCompleted()
             }
         })
-
-        viewModel.navigateToRegisterFragment.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToRegisterFragment())
-                viewModel.onNavigateToRegisterFragmentCompleted()
-            }
-        })
-
         binding.loginButton.setOnClickListener {
             val username = binding.userNameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             viewModel.loginUser(username, password)
         }
 
+
+        /** Button Register click event handling*/
+        /** When button is clicked go to Register Activity*/
+        viewModel.navigateToRegisterFragment.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToRegisterFragment())
+                viewModel.onNavigateToRegisterFragmentCompleted()
+            }
+        })
         binding.registerButton.setOnClickListener {
             viewModel.onNavigateToRegisterFragment()
         }

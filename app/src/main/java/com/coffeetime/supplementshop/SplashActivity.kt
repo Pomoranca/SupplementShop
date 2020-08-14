@@ -18,20 +18,21 @@ class SplashActivity : Activity() {
     public override fun onCreate(icicle: Bundle?) {
         super.onCreate(icicle)
         setContentView(R.layout.activity_splash)
+
         CoroutineScope(Dispatchers.Main).launch {
             startAnimation()
             startActivity()
         }
-
     }
 
+    /** Animate logo and delay starting next Activity*/
     private suspend fun startAnimation() {
         motion_layout.transitionToEnd()
         delay(1000)
     }
 
+    /** If token exists skip login activity and go to Main activity*/
     private fun startActivity() {
-
         val intent = if (isUserLoggedIn()) {
             Intent(this, MainActivity::class.java)
         } else {
@@ -42,6 +43,7 @@ class SplashActivity : Activity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
+    /** If token exists return true else return false*/
     private fun isUserLoggedIn(): Boolean {
         return User.getToken(this) != null
 

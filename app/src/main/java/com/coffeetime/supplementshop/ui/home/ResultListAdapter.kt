@@ -25,7 +25,6 @@ class ResultListAdapter(private val feed: List<AllUsersQuery.AllUser>) :
 
     override fun getItemCount(): Int {
         return feed.size
-
     }
 
     var onEndOfListReached: (() -> Unit)? = null

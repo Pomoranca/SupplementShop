@@ -14,6 +14,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+/** Enum class to track Register mutation status*/
+
 enum class RegisterStatus { LOADING, ERROR, DONE }
 
 class FragmentRegisterViewModel(application: Application) : AndroidViewModel(application) {
