@@ -13,6 +13,7 @@ import com.coffeetime.supplementshop.AllUsersQuery
 import com.coffeetime.supplementshop.databinding.FragmentHomeBinding
 import com.coffeetime.supplementshop.network.User
 import com.coffeetime.supplementshop.network.apolloClient
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.channels.Channel
 import java.lang.Exception
 
@@ -32,6 +33,9 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
+
+        activity!!.bottomNavigation.visibility = View.VISIBLE
+
 
         val feed = mutableListOf<AllUsersQuery.AllUser>()
         val adapter = ResultListAdapter(feed)
@@ -64,8 +68,6 @@ class HomeFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         }
-
-
 
         return binding.root
     }

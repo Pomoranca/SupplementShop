@@ -1,12 +1,14 @@
 package com.coffeetime.supplementshop.ui.login
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apollographql.apollo.coroutines.toDeferred
 import com.coffeetime.supplementshop.SignInUserMutation
+import com.coffeetime.supplementshop.network.User
 import com.coffeetime.supplementshop.network.apolloClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,11 +38,13 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
     val navigateToRegisterFragment: LiveData<Boolean>
         get() = _navigateToRegisterFragment
 
-    val viewModelJob = Job()
+    private val viewModelJob = Job()
 
-    val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val token = ""
+    init {
+        loginIfTokenExists()
+    }
 
 
     fun onNavigateToRegisterFragment() {
@@ -77,8 +81,17 @@ class FragmentLoginViewModel(application: Application) : AndroidViewModel(applic
                 Toast.makeText(context, response.errors()[0].message(), Toast.LENGTH_SHORT).show()
                 return@launch
             } else {
-                _navigateToOverviewFragment.value = true
+                val token = response.data()!!.signinUser.token!!
+                User.setToken(context, token)
+                onNavigateToOverviewFragment()
             }
+        }
+    }
+
+    private fun loginIfTokenExists(){
+        if(User.getToken(context) != null) {
+            Log.i("TOKEN", User.getToken(context)!!)
+            _navigateToOverviewFragment.value = true
         }
 
     }

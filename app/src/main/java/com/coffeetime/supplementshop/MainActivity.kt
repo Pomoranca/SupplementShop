@@ -23,10 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         if(navController.currentDestination!!.label!! == "FragmentLogin") {
             bottomNavigation.visibility = View.GONE
-        } else {
-            bottomNavigation.visibility = View.VISIBLE
-
-        }
+        } 
 
     }
 }
