@@ -11,11 +11,9 @@ import com.coffeetime.supplementshop.databinding.ResultItemBinding
 class ResultListAdapter(private val feed: List<AllUsersQuery.AllUser>) :
     RecyclerView.Adapter<ResultListAdapter.ViewHolder>() {
 
-
     class ViewHolder(val binding: ResultItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val binding = ResultItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,7 +25,6 @@ class ResultListAdapter(private val feed: List<AllUsersQuery.AllUser>) :
         return feed.size
     }
 
-    var onEndOfListReached: (() -> Unit)? = null
     var onItemClicked: ((AllUsersQuery.AllUser) -> Unit)? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -36,12 +33,9 @@ class ResultListAdapter(private val feed: List<AllUsersQuery.AllUser>) :
         holder.binding.resultSite.text = result.id
 
         Glide.with(holder.itemView.context)
-            .load(R.drawable.user)
+            .load(R.drawable.item_image)
+            .centerCrop()
             .into(holder.binding.missionPatch)
-
-        if (position == feed.size - 1) {
-//            onEndOfListReached?.invoke()
-        }
 
         holder.binding.root.setOnClickListener {
             onItemClicked?.invoke(result)

@@ -1,6 +1,7 @@
 package com.coffeetime.supplementshop.ui.login
 
 import android.app.Application
+import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -20,8 +21,7 @@ enum class LoginStatus { LOADING, ERROR, DONE }
 
 class FragmentLoginViewModel(application: Application) : AndroidViewModel(application) {
 
-
-    val context = application.applicationContext
+    val context = application.applicationContext!!
 
     private val _status = MutableLiveData<LoginStatus>()
 

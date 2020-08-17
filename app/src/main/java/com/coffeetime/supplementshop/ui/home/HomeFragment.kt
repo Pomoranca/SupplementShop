@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.apollographql.apollo.coroutines.toDeferred
@@ -37,36 +38,17 @@ class HomeFragment : Fragment() {
         requireActivity().bottomNavigation.visibility = View.VISIBLE
 
 
-        val feed = mutableListOf<AllUsersQuery.AllUser>()
-        val adapter = ResultListAdapter(feed)
-        binding.homeFeed.adapter = adapter
-        val channel = Channel<Unit>(Channel.CONFLATED)
+        viewModel.users.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                val adapter = ResultListAdapter(it)
+                binding.homeFeed.adapter = adapter
 
-        channel.offer(Unit)
-        adapter.onEndOfListReached = {
-            channel.offer(Unit)
-        }
-
-
-        lifecycleScope.launchWhenResumed {
-            for (item in channel) {
-                val response = try {
-
-                    apolloClient(requireContext()).query(AllUsersQuery()).toDeferred().await()
-
-                } catch (e: Exception) {
-                    e.printStackTrace()
-
-                    return@launchWhenResumed
-                }
-
-                val newFeed = response.data()!!.allUsers
-
-                Log.i("RESPONSES", newFeed[0].toString())
-
-                feed.addAll(newFeed)
                 adapter.notifyDataSetChanged()
             }
+        })
+
+        binding.logOutButton.setOnClickListener {
+            viewModel.logOutUser()
         }
 
         return binding.root

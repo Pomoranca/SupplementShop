@@ -1,0 +1,67 @@
+[
+    {
+    "geometry": {
+        "location": {
+            "lat": 43.857389,
+            "lng": 18.414972
+        }
+    },
+    "name": "MuscleFreak",
+    "rating": 4.2,
+    "vicinity": "Mis Irbina, Sarajevo 71000"
+},
+    {
+        "geometry": {
+            "location": {
+                "lat": 43.855332,
+                "lng": 18.408111
+            }
+        },
+        "name": "MuscleFreak",
+        "rating": 4.5,
+        "vicinity": "Vrbanja 1, Sarajevo 71000"
+    },
+    {
+        "geometry": {
+            "location": {
+                "lat": 43.856414,
+                "lng": 18.405736
+            }
+        },
+        "name": "Proteini.si",
+        "rating": 4.5,
+        "vicinity": "Franca Lehara 2, Sarajevo 71000"
+    },
+    {
+        "geometry": {
+            "location": {
+                "lat":43.852015,
+                "lng": 18.384112            }
+        },
+        "name": "Suplementi.ba",
+        "rating": 4.2,
+        "vicinity": "Zmaja od Bosne bb, Sarajevo 71000"
+    },
+    {
+        "geometry": {
+            "location": {
+                "lat": 43.856499,
+                "lng": 18.389882
+            }
+        },
+        "name": "Selected Supplements",
+        "rating": 4.5,
+        "vicinity": "Pofalići, Sarajevo 71000"
+    },
+    {
+        "geometry": {
+            "location": {
+                "lat": 43.855000,
+                "lng": 18.399738
+            }
+        },
+        "name": "Muscle Freak",
+        "rating": 4.5,
+        "vicinity": "Marijin Dvor, Sarajevo 71000"
+    }
+]
